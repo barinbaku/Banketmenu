@@ -1,0 +1,209 @@
+:root {
+  --gold: #8B6A2F;
+  --gold-soft: #A2824C;
+  --ink: #3B2A1E;
+  --ink-dim: #6B5842;
+  --bg: #F4ECDA;
+  --bg-wine: #E8DBC0;
+  --card-bg: #FBF6EA;
+  --rule: rgba(139,106,47,0.35);
+  --serif-display: 'Lora', Georgia, serif;
+  --serif-body: 'IBM Plex Serif', Georgia, serif;
+  --max-w: 880px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--serif-body);
+  color: var(--ink);
+  background: var(--bg);
+  background-image: radial-gradient(ellipse 140% 60% at 50% 0%, var(--bg-wine) 0%, rgba(232,219,192,0) 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 24px 40px;
+  text-align: center;
+}
+.hero-decor {
+  position: absolute;
+  width: 220px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.hero-decor--left { top: -60px; left: -70px; }
+.hero-decor--right { bottom: -70px; right: -70px; transform: scaleY(-1) rotate(6deg); }
+.hero-inner { position: relative; z-index: 1; }
+.logo { width: 140px; margin-bottom: 18px; filter: drop-shadow(0 1px 6px rgba(59,42,30,0.12)); }
+.hero-rule {
+  width: 120px; height: 1px; background: var(--gold);
+  margin: 0 auto 18px; position: relative;
+}
+.hero-dot {
+  position: absolute; left: 50%; top: -3px; width: 6px; height: 6px;
+  background: var(--gold); border-radius: 50%; transform: translateX(-50%);
+}
+.hero h1 {
+  font-family: var(--serif-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+.hero-sub {
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Package nav ---------- */
+.pkgnav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244,236,218,0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 2px 10px rgba(59,42,30,0.05);
+}
+.pkgnav-track {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 10px 8px;
+  scroll-behavior: smooth;
+}
+.pkgnav-track::-webkit-scrollbar { display: none; }
+.pkgnav-track button {
+  flex: none;
+  font-family: var(--serif-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 7px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.pkgnav-track button:hover { background: rgba(139,106,47,0.08); }
+.pkgnav-track button.active {
+  color: var(--gold);
+  border-color: var(--rule);
+  background: var(--card-bg);
+  font-weight: 600;
+}
+
+/* ---------- Main content ---------- */
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 30px 20px 40px;
+}
+
+.package {
+  padding-top: 40px;
+  scroll-margin-top: 70px;
+}
+.package:first-child { padding-top: 10px; }
+
+.pkg-head { text-align: center; margin-bottom: 26px; }
+.pkg-eyebrow {
+  font-family: var(--serif-body); font-style: italic; font-size: 0.8rem;
+  letter-spacing: 1.5px; color: var(--gold-soft); text-transform: uppercase; margin-bottom: 6px;
+}
+.pkg-title {
+  font-family: var(--serif-display); font-weight: 700; font-size: 1.7rem; color: var(--gold); margin-bottom: 16px;
+}
+.price-line {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.price-line .rule { width: 50px; height: 1px; background: var(--rule); }
+.price-num { font-family: var(--serif-display); font-weight: 700; font-size: 2.4rem; color: var(--gold); line-height: 1; }
+.price-unit { font-family: var(--serif-body); font-size: 0.75rem; letter-spacing: 1.5px; color: var(--gold-soft); align-self: flex-end; margin-bottom: 6px; }
+.price-caption { font-style: italic; font-size: 0.85rem; color: var(--ink-dim); margin-top: 10px; }
+
+.pkg-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+@media (max-width: 640px) {
+  .pkg-columns { grid-template-columns: 1fr; }
+}
+
+.pkg-sec { margin-bottom: 26px; }
+.pkg-sec-head { text-align: center; margin-bottom: 8px; }
+.pkg-sec-ru { font-family: var(--serif-display); font-weight: 700; font-size: 1.05rem; color: var(--gold); }
+.pkg-sec-az { display: block; font-style: italic; font-size: 0.82rem; color: var(--ink-dim); margin-top: 2px; }
+.pkg-sec-rule { border-bottom: 1px solid var(--rule); margin: 8px 0 12px; }
+
+.pkg-list { list-style: none; margin: 0; padding: 0; }
+.pkg-list li {
+  padding-left: 16px; position: relative; margin-bottom: 10px; line-height: 1.4;
+}
+.pkg-list li::before {
+  content: ''; position: absolute; left: 2px; top: 0.55em; width: 4px; height: 4px;
+  background: var(--gold); border-radius: 50%;
+}
+.item-ru { font-family: var(--serif-body); font-size: 0.98rem; color: var(--ink); }
+.item-az { display: block; font-style: italic; font-size: 0.85rem; color: var(--ink-dim); margin-top: 1px; }
+
+.pkg-service {
+  text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--rule);
+  font-style: italic; font-size: 0.82rem; color: var(--gold-soft);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  text-align: center;
+  padding: 30px 20px 60px;
+  color: var(--ink-dim);
+  font-size: 0.8rem;
+}
+.site-footer p { margin: 4px 0; }
+.footer-contact { letter-spacing: 0.3px; }
+
+/* ---------- To-top button ---------- */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--card-bg);
+  color: var(--gold);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(59,42,30,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 30;
+}
+.to-top.visible { opacity: 1; pointer-events: auto; }
+.to-top:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .to-top { transition: none; }
+}
